@@ -43,18 +43,6 @@ for file_path in file_paths:
     except OSError as e:
         print(f"Error: {e.filename} - {e.strerror}")
    
-
-directory_path = "VCHAT"
-
-try:
-    shutil.rmtree(directory_path)
-    print(f"{directory_path} has been successfully removed.")
-except FileNotFoundError:
-    print(f"Error: The directory {directory_path} was not found.")
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
-    
-
 class FirebaseChat:
     def __init__(self, config):
         self.firebase = pyrebase.initialize_app(config)
