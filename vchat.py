@@ -45,7 +45,7 @@ class ChatWindow:
         self.firebase_chat = firebase_chat
         self.root = tk.Tk()
 
-        self.root.title("Chat App - User: {}".format(username))
+        self.root.title("VCHAT - User: {}".format(username))
         self.root.configure(bg="black")
 
         self.message_listbox = tk.Listbox(self.root, width=50, height=20, bg="black", fg="green",
@@ -65,7 +65,7 @@ class ChatWindow:
 
     def text_to_voice(self, text):
         try:
-            subprocess.run(["espeak", text])
+            subprocess.run(["espeak-ng -p 54", text])
         except FileNotFoundError:
             print("Error: espeak not found. Install espeak or adjust the path.")
         except Exception as e:
