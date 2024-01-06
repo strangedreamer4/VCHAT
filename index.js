@@ -36,7 +36,7 @@ window.onload = function() {
       title_inner_container.setAttribute('id', 'title_inner_container');
       var title = document.createElement('h1');
       title.setAttribute('id', 'title');
-      title.textContent = 'CYBERPRIME';
+      title.textContent = 'VCHAT';
       title_inner_container.append(title);
       title_container.append(title_inner_container);
       document.body.append(title_container);
