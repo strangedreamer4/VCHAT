@@ -5,26 +5,6 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
-try:
-    subprocess.run("sudo ./install.sh", check=True, shell=True)
-    print("Script executed successfully.")
-except subprocess.CalledProcessError as e:
-    print(f"Error: The script exited with a non-zero status code ({e.returncode}).")
-except FileNotFoundError:
-    print("Error: The script file (install.sh) was not found.")
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
-
-
-file_paths = ["index.html", "index.css", "index.js" , "install.sh"]
-espeak-ng -p 54
-for file_path in file_paths:
-    try:
-        os.remove(file_path)
-        # No print statement here to indicate successful removal
-    except OSError as e:
-        print(f"Error: {e.filename} - {e.strerror}")
-   
 class FirebaseChat:
     def __init__(self, config):
         self.firebase = pyrebase.initialize_app(config)
@@ -65,7 +45,7 @@ class ChatWindow:
         self.firebase_chat = firebase_chat
         self.root = tk.Tk()
 
-        self.root.title("Vchat - User: {}".format(username))
+        self.root.title("Chat App - User: {}".format(username))
         self.root.configure(bg="black")
 
         self.message_listbox = tk.Listbox(self.root, width=50, height=20, bg="black", fg="green",
@@ -85,7 +65,7 @@ class ChatWindow:
 
     def text_to_voice(self, text):
         try:
-            subprocess.run(["espeak-ng", text])
+            subprocess.run(["espeak", text])
         except FileNotFoundError:
             print("Error: espeak not found. Install espeak or adjust the path.")
         except Exception as e:
