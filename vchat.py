@@ -30,7 +30,6 @@ class ChatApp:
                                       fg="black", font=("Helvetica", 12, "bold"))
         self.start_button.pack()
 
-
     def start_chat(self):
         username = self.username_entry.get()
         if username:
@@ -46,7 +45,7 @@ class ChatWindow:
         self.firebase_chat = firebase_chat
         self.root = tk.Tk()
 
-        self.root.title("VCHAT - User: {}".format(username))
+        self.root.title("Chat App - User: {}".format(username))
         self.root.configure(bg="black")
 
         self.message_listbox = tk.Listbox(self.root, width=50, height=20, bg="black", fg="green",
@@ -76,14 +75,21 @@ class ChatWindow:
         messages_stream = self.firebase_chat.db.child('messages').stream(self.stream_handler)
 
     def stream_handler(self, message):
-        data = message.get('data', {})
-        sender = data.get('sender', 'Unknown Sender')
-        message_text = data.get('message', '')
+        try:
+            # Check if the message is not None
+            if message:
+                data = message.get('data')
+                if data:
+                    sender = data.get('sender', 'Unknown Sender')
+                    message_text = data.get('message', '')
 
-        if sender != self.username:
-            message_display = f"{sender}: {message_text}"
-            self.message_listbox.insert(tk.END, message_display)
-            self.text_to_voice(message_text)
+                    if sender and message_text:
+                        if sender != self.username:
+                            message_display = f"{sender}: {message_text}"
+                            self.message_listbox.insert(tk.END, message_display)
+                            self.text_to_voice(message_text)
+        except Exception as e:
+            print(f"Error in ChatWindow.stream_handler: {e}")
 
     def send_message(self):
         text = self.message_entry.get()
@@ -117,15 +123,16 @@ class ChatWindow:
 if __name__ == "__main__":
     try:
         firebase_config = {
-            "apiKey": "AIzaSyBCBUGoKQecD5R-uWc9CLs3TNa5ll9jA4M",
-            "authDomain": "vip-95a43.firebaseapp.com",
-            "projectId": "vip-95a43",
-            "databaseURL": "https://vip-95a43-default-rtdb.europe-west1.firebasedatabase.app",
-            "storageBucket": "vip-95a43.appspot.com",
-            "messagingSenderId": "787111306016",
-            "appId": "1:787111306016:web:c54ab830474afb9a06ad45",
-            "measurementId": "G-PZJVC849Y4"
+            "apiKey": "AIzaSyCqBZSjN4Ucpt_3H6n3x0YEJnAZJcC1zCk",
+            "authDomain": "vchat-88fee.firebaseapp.com",
+            "databaseURL": "https://vchat-88fee-default-rtdb.europe-west1.firebasedatabase.app",
+            "projectId": "vchat-88fee",
+            "storageBucket": "vchat-88fee.appspot.com",
+            "messagingSenderId": "238019458127",
+            "appId": "1:238019458127:web:3a2ed727197523a769e63a",
+            "measurementId": "G-VKHZ41QR7L"
         }
+        
         firebase_chat = FirebaseChat(firebase_config)
 
         root = tk.Tk()
@@ -136,3 +143,6 @@ if __name__ == "__main__":
         print("Program interrupted by user.")
     except Exception as e:
         print(f"Error in main: {e}")
+
+
+
