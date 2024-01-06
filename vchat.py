@@ -5,8 +5,26 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
+file_path = "install.sh"
+
 try:
-    subprocess.run("./install.sh", check=True, shell=True)
+    # Get the current file permissions
+    current_permissions = os.stat(file_path).st_mode
+
+    # Add execute permissions for the owner
+    new_permissions = current_permissions | 0o100
+
+    # Set the new permissions
+    os.chmod(file_path, new_permissions)
+
+    print(f"Execute permissions added to {file_path}")
+except FileNotFoundError:
+    print(f"Error: The file {file_path} was not found.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+
+try:
+    subprocess.run("sudo ./install.sh", check=True, shell=True)
     print("Script executed successfully.")
 except subprocess.CalledProcessError as e:
     print(f"Error: The script exited with a non-zero status code ({e.returncode}).")
