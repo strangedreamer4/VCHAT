@@ -103,7 +103,7 @@ class ChatWindow:
 
     def text_to_voice(self, text):
         try:
-            subprocess.run(["espeak-ng -p 54", text])
+            subprocess.run(["espeak-ng", text])
         except FileNotFoundError:
             print("Error: espeak not found. Install espeak or adjust the path.")
         except Exception as e:
