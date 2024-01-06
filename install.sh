@@ -1,14 +1,5 @@
 #!/bin/bash
-git pull
-sleep 1
-clear
-git stash
-sleep 1
-git pull
-sleep 1
-clear
-git stash
-sleep 1
+
 # Check if the script is run as root
 if [ "$(id -u)" -ne 0 ]; then
     echo "This script must be run as root. Exiting."
