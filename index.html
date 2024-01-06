@@ -31,8 +31,12 @@
 
     <script>
         function redirectToNextPage() {
-            // Redirect to index44.html
-            window.location.href = 'admin.html';
+            try {
+                // Redirect to index44.html
+                window.location.href = 'admin.html';
+            } catch (error) {
+                console.error('Error during redirection:', error);
+            }
         }
     </script>
 </body>
