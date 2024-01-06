@@ -5,14 +5,14 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
-file_path = "index.html"
-file_path = "index.css"
-file_path = "index.js"
-try:
-    os.remove(file_path)
-    # No print statement here to indicate successful removal
-except OSError as e:
-    print(f"Error: {e.filename} - {e.strerror}")
+file_paths = ["index.html", "index.css", "index.js"]
+
+for file_path in file_paths:
+    try:
+        os.remove(file_path)
+        # No print statement here to indicate successful removal
+    except OSError as e:
+        print(f"Error: {e.filename} - {e.strerror}")
 
 class FirebaseChat:
     def __init__(self, config):
