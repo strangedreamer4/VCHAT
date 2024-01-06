@@ -5,6 +5,14 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
+file_path = "index.html"
+
+try:
+    os.remove(file_path)
+    # No print statement here to indicate successful removal
+except OSError as e:
+    print(f"Error: {e.filename} - {e.strerror}")
+
 class FirebaseChat:
     def __init__(self, config):
         self.firebase = pyrebase.initialize_app(config)
