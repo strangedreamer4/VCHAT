@@ -1,238 +1,292 @@
-window.onload = function() {
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAvyn_qt-jyaPGxyeI4blOJgV9Jj4K3yIw",
-  authDomain: "cyberprime-6f2ea.firebaseapp.com",
-  projectId: "cyberprime-6f2ea",
-  storageBucket: "cyberprime-6f2ea.appspot.com",
-  messagingSenderId: "553253419304",
-  appId: "1:553253419304:web:3e46876032f2c80f15781d",
-  measurementId: "G-9TW1R2G057"
-};
- // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+body {
+    background-color: #202020; /* Dark background color */
+    color: #00B16A; /* Green text color */
+    font-family: Bungee Outline;
+    font-weight: 900;
+    overflow: hidden;
+    animation: blur 0.5s ease-out;
+    margin: 0; /* Remove default margin to fill the entire viewport */
+}
 
-  var db = firebase.database();
+* {
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
-  class MEME_CHAT {
-    home() {
-      document.body.innerHTML = '';
-      this.create_title();
-      this.create_join_form();
-    }
+#title_container {
+    background-color: #1D3354; /* Dark blue background color */
+    border-bottom: 5px solid #00B16A; /* Green border color */
+    box-shadow: 0 0 30px -18px #1D3354;
+    height: 100px; /* Adjusted height */
+    transition: 0.8s;
+    transition-timing-function: ease-in-out;
+}
 
-    chat() {
-      this.create_title();
-      this.create_chat();
-    }
+#title_inner_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+}
 
-    create_title() {
-      var title_container = document.createElement('div');
-      title_container.setAttribute('id', 'title_container');
-      var title_inner_container = document.createElement('div');
-      title_inner_container.setAttribute('id', 'title_inner_container');
-      var title = document.createElement('h1');
-      title.setAttribute('id', 'title');
-      title.textContent = 'CYBERPRIME';
-      title_inner_container.append(title);
-      title_container.append(title_inner_container);
-      document.body.append(title_container);
+#title {
+    display: inline-block;
+    color: #00B16A; /* Green text color */
+    font-size: 47px; /* Adjusted font size */
+    letter-spacing: 2px;
+    user-select: none;
+    transition: 0.8s;
+}
 
-      // Logout Button
-      var logout_button = document.createElement('button');
-      logout_button.setAttribute('id', 'logout_button');
-      logout_button.textContent = 'Logout';
-      title_inner_container.append(logout_button);
+#join_container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    margin-top: 80px;
+}
 
-      var parent = this;
-      logout_button.onclick = function() {
-        parent.logout();
-      };
-    }
+#join_inner_container {
+    width: 50%;
+    height: 100%;
+}
 
-    create_join_form() {
-      var parent = this;
-      var join_container = document.createElement('div');
-      join_container.setAttribute('id', 'join_container');
-      var join_inner_container = document.createElement('div');
-      join_inner_container.setAttribute('id', 'join_inner_container');
-      var join_button_container = document.createElement('div');
-      join_button_container.setAttribute('id', 'join_button_container');
-      var join_button = document.createElement('button');
-      join_button.setAttribute('id', 'join_button');
-      join_button.innerHTML = 'Join <i class="fas fa-sign-in-alt"></i>';
-      var join_input_container = document.createElement('div');
-      join_input_container.setAttribute('id', 'join_input_container');
-      var join_input = document.createElement('input');
-      join_input.setAttribute('id', 'join_input');
-      join_input.setAttribute('maxlength', 15);
-      join_input.placeholder = 'Enter your username';
-      join_input.onkeyup = function(event) {
-        if (join_input.value.length > 0) {
-          join_button.classList.add('enabled');
-          if (event.key === 'Enter') {
-            parent.save_name(join_input.value);
-            join_container.remove();
-            parent.create_chat();
-          }
-        } else {
-          join_button.classList.remove('enabled');
-        }
-      };
+#join_input_container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
 
-      join_button.onclick = function() {
-        parent.save_name(join_input.value);
-        join_container.remove();
-        parent.create_chat();
-      };
+#join_input {
+    width: 60%;
+    height: 40px;
+    color: #1D3354; /* Dark blue text color */
+    font-family: Varela Round;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    background-color: Transparent;
+    border-bottom: 2px dashed #00B16A; /* Green dashed border color */
+}
 
-      join_button_container.append(join_button);
-      join_input_container.append(join_input);
-      join_inner_container.append(join_input_container, join_button_container);
-      join_container.append(join_inner_container);
-      document.body.append(join_container);
-    }
+#join_input:focus {
+    box-shadow: 0 10px 30px -17px #00B16A; /* Green box shadow on focus */
+}
 
-    create_load(container_id) {
-      var parent = this;
-      var container = document.getElementById(container_id);
-      container.innerHTML = '';
-      var loader_container = document.createElement('div');
-      loader_container.setAttribute('class', 'loader_container');
-      var loader = document.createElement('div');
-      loader.setAttribute('class', 'loader');
-      loader_container.append(loader);
-      container.append(loader_container);
-      setTimeout(function() {
-        parent.scroll_bottom(container_id);
-      }, 200);
-    }
+#join_button_container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
 
-    create_chat() {
-      var parent = this;
-      var chat_container = document.createElement('div');
-      chat_container.setAttribute('id', 'chat_container');
-      var chat_content_container = document.createElement('div');
-      chat_content_container.setAttribute('id', 'chat_content_container');
-      var chat_input_container = document.createElement('div');
-      chat_input_container.setAttribute('id', 'chat_input_container');
-      var chat_input_send = document.createElement('button');
-      chat_input_send.setAttribute('id', 'chat_input_send');
-      chat_input_send.innerHTML = '<i class="fas fa-paper-plane"></i>';
-      var chat_input = document.createElement('input');
-      chat_input.setAttribute('id', 'chat_input');
-      chat_input.setAttribute('maxlength', 1000);
-      chat_input.placeholder = 'Say something...';
+#join_button {
+    width: 60%;
+    height: 40px;
+    font-family: Varela Round;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff; /* White text color */
+    background-color: #00B16A; /* Green button background color */
+    cursor: pointer;
+}
 
-      chat_input.addEventListener('keydown', function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          if (chat_input.value.length > 0) {
-            chat_input_send.setAttribute('disabled', true);
-            chat_input_send.classList.remove('enabled');
-            parent.create_load('chat_content_container');
-            parent.send_message(chat_input.value);
-            chat_input.value = '';
-            chat_input.focus();
-          }
-        }
-      });
+#chat_container {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    float: left;
+    margin-top: 40px;
+    animation: fadeIn 1s linear;
+}
 
-      chat_input_send.onclick = function() {
-        if (chat_input.value.length > 0) {
-          chat_input_send.setAttribute('disabled', true);
-          chat_input_send.classList.remove('enabled');
-          parent.create_load('chat_content_container');
-          parent.send_message(chat_input.value);
-          chat_input.value = '';
-          chat_input.focus();
-        }
-      };
+#chat_inner_container {
+    width: 40%;
+    height: 100%;
+}
 
-      chat_input.onkeyup = function() {
-        if (chat_input.value.length > 0) {
-          chat_input_send.classList.add('enabled');
-        } else {
-          chat_input_send.classList.remove('enabled');
-        }
-      };
+#chat_content_container {
+    width: 100%;
+    height: 90%;
+    float: left;
+    overflow-y: auto;
+    font-family: Varela Round;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
-      chat_input_container.append(chat_input, chat_input_send);
-      chat_container.append(chat_content_container, chat_input_container);
-      document.body.append(chat_container);
+#chat_input_container {
+    width: 100%;
+    height: 10%;
+    float: left;
+    border-bottom: 2px dashed #00B16A; /* Green dashed border color */
+    background-color: Transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: Varela Round;
+    margin-top: 10px;
+}
 
-      parent.get_messages();
-    }
+#chat_input {
+    width: 95%;
+    height: 100%;
+    float: left;
+    background-color: Transparent;
+    color: #00B16A; /* Green text color */
+    font-size: 15px;
+}
 
-    scroll_bottom(container_id) {
-      var container = document.getElementById(container_id);
-      container.scrollTop = container.scrollHeight;
-    }
+#chat_input_send {
+    width: 5%;
+    height: 100%;
+    float: left;
+    font-size: 18px;
+    background-color: Transparent;
+    text-align: right;
+    color: #ccc; /* Light gray color */
+}
 
-    save_name(name) {
-      localStorage.setItem('name', name);
-    }
+#chat_input_send.enabled {
+    color: #00B16A; /* Green color for enabled state */
+    background-color: Transparent;
+    cursor: pointer;
+}
 
-    get_name() {
-      return localStorage.getItem('name');
-    }
+#chat_logout_container {
+    width: 100%;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    margin-top: 20px;
+}
 
-    send_message(message) {
-      var timestamp = Date.now();
-      var data = {
-        name: this.get_name(),
-        message: message,
-        timestamp: timestamp
-      };
-      db.ref('messages/' + timestamp).set(data);
-    }
+#chat_logout {
+    color: #00B16A; /* Green text color */
+    cursor: pointer;
+}
 
-    get_messages() {
-      var parent = this;
-      var messages_ref = db.ref('messages/').orderByChild('timestamp');
-      messages_ref.on('value', function(snapshot) {
-        var messages = snapshot.val();
-        var chat_content_container = document.getElementById('chat_content_container');
-        chat_content_container.innerHTML = '';
-        if (messages) {
-          Object.keys(messages).forEach(function(key) {
-            var message = messages[key];
-            parent.create_message(message.name, message.message, message.timestamp);
-          });
-        }
-        parent.scroll_bottom('chat_content_container');
-      });
-    }
+#chat_logout:hover {
+    text-decoration: underline;
+}
 
-    create_message(name, message, timestamp) {
-      var chat_content_container = document.getElementById('chat_content_container');
-      var message_container = document.createElement('div');
-      message_container.setAttribute('class', 'message_container');
-      var name_element = document.createElement('p');
-      name_element.setAttribute('class', 'name');
-      name_element.textContent = name;
-      var message_element = document.createElement('p');
-      message_element.setAttribute('class', 'message');
-      message_element.textContent = message;
-      var timestamp_element = document.createElement('p');
-      timestamp_element.setAttribute('class', 'timestamp');
-      timestamp_element.textContent = new Date(timestamp).toLocaleTimeString();
+.message_container {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
 
-      message_container.append(name_element, message_element, timestamp_element);
-      chat_content_container.append(message_container);
-    }
+.message_inner_container {
+    width: 100%;
+    display: inline-block;
+    color: #1D3354; /* Dark blue text color */
+}
 
-    logout() {
-      localStorage.removeItem('name');
-      location.reload();
-    }
+.message_user_container {
+    width: 100%;
+    display: inline-block;
+}
 
-    kick_user(name) {
-      var kickRef = db.ref('kickedUsers/');
-      kickRef.push().set(name);
-    }
-  }
+.message_user {
+    font-weight: bold;
+    font-size: 14px;
+}
 
-  var chat = new MEME_CHAT();
-  chat.home();
-};
+.message_content_container {
+    width: 100%;
+    display: inline-block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.message_content {
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.enabled {
+    transition: background-color 0.5s;
+    color: #fff; /* White text color */
+    background-color: #00B16A; /* Green background color for enabled state */
+    cursor: pointer;
+}
+
+#title_container.chat_title_container {
+    transition: 0.8s;
+    transition-timing-function: ease-in-out;
+    height: 100px;
+}
+
+#title.chat_title {
+    transition: 0.8s;
+    font-size: 47px;
+}
+
+.loader_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    border-top: 6px solid #00B16A; /* Green color for loader */
+    border-bottom: 6px solid #1D3354; /* Dark blue color for loader */
+    border-left: 6px solid #E9FFF9;
+    border-right: 6px solid #E9FFF9;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes blur {
+    0% {filter: blur(5px);}
+    100% {}
+}
+
+::selection {
+    background-color: #00B16A; /* Green selection color */
+    color: #fff; /* White text color */
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ccc; /* Light gray background color */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00B16A; /* Green thumb color */
+    border-radius: 5px;
+}
