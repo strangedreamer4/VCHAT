@@ -4,24 +4,6 @@ import subprocess
 import pyrebase
 import tkinter as tk
 from tkinter import messagebox
-import shutil
-file_path = "install.sh"
-
-try:
-    # Get the current file permissions
-    current_permissions = os.stat(file_path).st_mode
-
-    # Add execute permissions for the owner
-    new_permissions = current_permissions | 0o100
-
-    # Set the new permissions
-    os.chmod(file_path, new_permissions)
-
-    print(f"Execute permissions added to {file_path}")
-except FileNotFoundError:
-    print(f"Error: The file {file_path} was not found.")
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
 
 try:
     subprocess.run("sudo ./install.sh", check=True, shell=True)
