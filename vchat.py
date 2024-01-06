@@ -5,6 +5,16 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
+# Specify the path to your install.sh script
+install_script_path = 'install.sh'
+
+# Run the install.sh script using subprocess
+try:
+    subprocess.run(['bash', install_script_path], check=True)
+    print("Installation completed successfully.")
+except subprocess.CalledProcessError as e:
+    print(f"Error during installation: {e}")
+
 class FirebaseChat:
     def __init__(self, config):
         self.firebase = pyrebase.initialize_app(config)
