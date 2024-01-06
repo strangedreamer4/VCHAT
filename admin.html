@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatWebRoom Admin</title>
+  <style>
+    body {
+      background-color: #000000;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #000000;
+      color: #00FF00;
+      padding: 20px;
+      width: 500px;
+      height: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      overflow: auto;
+    }
+
+    .terminal:before {
+      content: '>';
+      color: #00FF00;
+      padding-right: 10px;
+    }
+
+    .output {
+      color: #00FF00;
+    }
+
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="output"></div>
+    <input type="password" id="password" placeholder="Enter password" autofocus />
+    <button class="button" id="login_button">Login</button>
+    <button class="button" id="clear_messages_button" disabled>Clear Messages</button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+  <script>
+     var firebaseConfig = {
+        apiKey: "AIzaSyCqBZSjN4Ucpt_3H6n3x0YEJnAZJcC1zCk",
+        authDomain: "vchat-88fee.firebaseapp.com",
+        databaseURL: "https://vchat-88fee-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "vchat-88fee",
+        storageBucket: "vchat-88fee.appspot.com",
+        messagingSenderId: "238019458127",
+        appId: "1:238019458127:web:3a2ed727197523a769e63a",
+        measurementId: "G-VKHZ41QR7L"
+  };
+    firebase.initializeApp(firebaseConfig);
+
+    var db = firebase.database();
+    var outputElement = document.querySelector('.output');
+    var passwordInput = document.getElementById('password');
+    var loginButton = document.getElementById('login_button');
+    var clearMessagesButton = document.getElementById('clear_messages_button');
+    var isLoggedIn = false;
+
+    function printMessage(message) {
+      outputElement.innerHTML += '<p>' + message + '</p>';
+      outputElement.scrollTop = outputElement.scrollHeight;
+    }
+
+    loginButton.addEventListener('click', function() {
+      var password = passwordInput.value;
+      if (password === '12345vip$') {
+        printMessage('Login successful!');
+        isLoggedIn = true;
+        clearMessagesButton.removeAttribute('disabled');
+      } else {
+        printMessage('Incorrect password. Try again.');
+        isLoggedIn = false;
+        clearMessagesButton.setAttribute('disabled', 'disabled');
+      }
+    });
+
+    clearMessagesButton.addEventListener('click', function() {
+      if (isLoggedIn) {
+        var password = passwordInput.value;
+        if (password === '12345vip$') {
+          if (confirm("Are you sure you want to clear all messages?")) {
+            db.ref('messages').remove()
+              .then(function() {
+                printMessage("All messages have been cleared.");
+              })
+              .catch(function(error) {
+                printMessage("Error clearing messages: " + error.message);
+              });
+          }
+        } else {
+          printMessage('Incorrect password. Try again.');
+        }
+      } else {
+        printMessage('Please login with the correct password first.');
+      }
+    });
+  </script>
+</body>
+</html>
+'))
+</script>
