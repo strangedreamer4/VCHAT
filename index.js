@@ -41,17 +41,18 @@ window.onload = function() {
       title_container.append(title_inner_container);
       document.body.append(title_container);
 
-      // Logout Button
-      var logout_button = document.createElement('button');
-      logout_button.setAttribute('id', 'logout_button');
-      logout_button.textContent = 'Logout';
-      title_inner_container.append(logout_button);
+      // Admin Button
+var admin_button = document.createElement('button');
+admin_button.setAttribute('id', 'admin_button');
+admin_button.textContent = 'Admin';
+title_inner_container.append(admin_button);
 
-      var parent = this;
-      logout_button.onclick = function() {
-        parent.logout();
-      };
-    }
+var parent = this;
+admin_button.onclick = function() {
+  window.location.href = 'admin.html'; // Redirect to admin.html
+};
+
+
 
     create_join_form() {
       var parent = this;
