@@ -1,14 +1,17 @@
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCqBZSjN4Ucpt_3H6n3x0YEJnAZJcC1zCk",
-  authDomain: "vchat-88fee.firebaseapp.com",
-  databaseURL: "https://vchat-88fee-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "vchat-88fee",
-  storageBucket: "vchat-88fee.appspot.com",
-  messagingSenderId: "238019458127",
-  appId: "1:238019458127:web:3a2ed727197523a769e63a",
-  measurementId: "G-VKHZ41QR7L"
-};
+// We enclose this in window.onload.
+// So we don't have ridiculous errors.
+window.onload = function() {
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+        apiKey: "AIzaSyCqBZSjN4Ucpt_3H6n3x0YEJnAZJcC1zCk",
+        authDomain: "vchat-88fee.firebaseapp.com",
+        databaseURL: "https://vchat-88fee-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "vchat-88fee",
+        storageBucket: "vchat-88fee.appspot.com",
+        messagingSenderId: "238019458127",
+        appId: "1:238019458127:web:3a2ed727197523a769e63a",
+        measurementId: "G-VKHZ41QR7L"
+  };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   // This is very IMPORTANT!! We're going to use "db" a lot.
