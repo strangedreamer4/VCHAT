@@ -53,11 +53,18 @@ window.onload = function() {
         parent.logout();
       };
     }
+  
+      // Admin Button
+var admin_button = document.createElement('button');
+admin_button.setAttribute('id', 'admin_button');
+admin_button.textContent = 'Admin';
+title_inner_container.append(admin_button);
 
+var parent = this;
+admin_button.onclick = function() {
+  window.location.href = 'admin.html'; // Redirect to admin.html
+};
     
-
-
-
     create_join_form() {
       var parent = this;
       var join_container = document.createElement('div');
