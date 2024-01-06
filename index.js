@@ -12,7 +12,7 @@ window.onload = function() {
         appId: "1:238019458127:web:3a2ed727197523a769e63a",
         measurementId: "G-VKHZ41QR7L"
   };
-  // Initialize Firebase
+ // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   var db = firebase.database();
@@ -36,13 +36,12 @@ window.onload = function() {
       title_inner_container.setAttribute('id', 'title_inner_container');
       var title = document.createElement('h1');
       title.setAttribute('id', 'title');
-      title.textContent = 'VCHAT';
+      title.textContent = 'CYBERPRIME';
       title_inner_container.append(title);
       title_container.append(title_inner_container);
       document.body.append(title_container);
 
-      
-      / Logout Button
+      // Logout Button
       var logout_button = document.createElement('button');
       logout_button.setAttribute('id', 'logout_button');
       logout_button.textContent = 'Logout';
@@ -53,8 +52,7 @@ window.onload = function() {
         parent.logout();
       };
     }
-  
-     
+
     create_join_form() {
       var parent = this;
       var join_container = document.createElement('div');
