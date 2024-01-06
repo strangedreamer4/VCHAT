@@ -219,10 +219,10 @@ window.onload = function() {
       }
 
       // Get the firebase database value
-      db.ref('chats/').once('value', function(message_object) {
+      db.ref('messages').once('value', function(message_object) {
         // This index is mortant. It will help organize the chat in order
         var index = parseFloat(message_object.numChildren()) + 1
-        db.ref('chats/' + `message_${index}`).set({
+        db.ref('messages' + `message_${index}`).set({
           name: parent.get_name(),
           message: message,
           index: index
