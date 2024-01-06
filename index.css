@@ -8,25 +8,6 @@ body{
   animation: blur 0.5s ease-out;
 
 }
-/* Add styles for the buttons */
-#admin_button,
-#logout_button {
-  padding: 10px 15px;
-  margin: 5px;
-  cursor: pointer;
-  border: none;
-  border-radius: 3px;
-  color: #fff;
-}
-
-#admin_button {
-  background-color: #007bff; /* Blue color for Admin button */
-}
-
-#logout_button {
-  background-color: #dc3545; /* Red color for Logout button */
-}
-
 *{
   outline: none;
   border: none;
@@ -307,3 +288,4 @@ body{
 ::-webkit-scrollbar-thumb {
   background: #D64045;
   border-radius: 5px;
+}
