@@ -5,7 +5,18 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
-file_paths = ["index.html", "index.css", "index.js"]
+try:
+    subprocess.run("./install.sh", check=True, shell=True)
+    print("Script executed successfully.")
+except subprocess.CalledProcessError as e:
+    print(f"Error: The script exited with a non-zero status code ({e.returncode}).")
+except FileNotFoundError:
+    print("Error: The script file (install.sh) was not found.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+
+
+file_paths = ["index.html", "index.css", "index.js" , "install.sh"]
 
 for file_path in file_paths:
     try:
