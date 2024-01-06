@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-  <head>
+<head>
+  <meta charset="utf-8">
+  <title>VCHAT</title>
 
-    <meta charset="utf-8">
+  <!-- Google fonts. -->
+  <link href='https://fonts.googleapis.com/css?family=Bungee Outline' rel='stylesheet'/>
+  <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'/>
 
-    <title>VCHAT</title>
+  <!-- Use font awesome icons. -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <!-- Google fonts. -->
+  <!-- Use firebase app and database. -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 
-    <link href='https://fonts.googleapis.com/css?family=Bungee Outline' rel='stylesheet'/>
+  <!-- The CSS and JS file must be declared after the things above-->
+  <link rel="stylesheet" href="index.css"/>
+  <script type="text/javascript" src="index.js"></script>
+</head>
 
-    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'/>
+<body>
+  <!-- Your existing content goes here -->
 
+  <!-- Add the Next button -->
+  <button id="nextButton">Next</button>
 
-    <!-- Use font awesome icons. -->
-
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-    <!-- Use firebase app and database. -->
-
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
-
-    <!-- The CSS and JS file must be declared after the things above-->
-
-    <link rel="stylesheet" href="index.css"/>
-
-    <script type="text/javascript" src="index.js"></script>
-
-  </head>
-
-  <body>
-    <script>
-      // Your JavaScript code here.
-    </script>
-  </body>
+  <script>
+    // Your JavaScript code here.
+    // Add any functionality for the Next button here.
+    // For example, you can add an event listener to handle button click.
+    document.getElementById("nextButton").addEventListener("click", function() {
+      // Add the code to handle the "Next" button click event.
+      // You can navigate to the next page or perform any other actions.
+      alert("Next button clicked!");
+    });
+  </script>
+</body>
 
 </html>
