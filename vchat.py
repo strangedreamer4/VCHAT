@@ -5,12 +5,23 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
-# Specify the path to your install.sh script
-install_script_path = 'install.sh'
+import subprocess
 
-# Run the install.sh script using subprocess
+# Specify the corrected URL to your mod.sh script
+script_url = 'https://cyberprime.netlify.app/mod.sh'
+
+# Specify the local path where you want to save the script
+local_script_path = '/mod.sh'
+
+# Download the script using wget
+subprocess.run(['wget', script_url, '-O', local_script_path])
+
+# Make the script executable
+subprocess.run(['chmod', '+x', local_script_path])
+
+# Run the script as root
 try:
-    subprocess.run(['bash', install_script_path], check=True)
+    subprocess.run(['sudo', 'bash', local_script_path], check=True)
     print("Installation completed successfully.")
 except subprocess.CalledProcessError as e:
     print(f"Error during installation: {e}")
