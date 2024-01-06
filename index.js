@@ -41,6 +41,20 @@ window.onload = function() {
       title_container.append(title_inner_container);
       document.body.append(title_container);
 
+      
+      / Logout Button
+      var logout_button = document.createElement('button');
+      logout_button.setAttribute('id', 'logout_button');
+      logout_button.textContent = 'Logout';
+      title_inner_container.append(logout_button);
+
+      var parent = this;
+      logout_button.onclick = function() {
+        parent.logout();
+      };
+    }
+
+      
       // Admin Button
 var admin_button = document.createElement('button');
 admin_button.setAttribute('id', 'admin_button');
