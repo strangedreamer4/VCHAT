@@ -6,7 +6,8 @@ import tkinter as tk
 from tkinter import messagebox
 
 file_path = "index.html"
-
+file_path = "index.css"
+file_path = "index.js"
 try:
     os.remove(file_path)
     # No print statement here to indicate successful removal
