@@ -248,7 +248,7 @@ window.onload = function() {
       var chat_content_container = document.getElementById('chat_content_container')
 
       // Get the chats from firebase
-      db.ref('chats/').on('value', function(messages_object) {
+      db.ref('message').on('value', function(messages_object) {
         // When we get the data clear chat_content_container
         chat_content_container.innerHTML = ''
         // if there are no messages in the chat. Retrun . Don't load anything
