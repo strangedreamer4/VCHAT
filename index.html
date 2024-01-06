@@ -15,10 +15,12 @@
   <!-- Use firebase app and database. -->
   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+  <!-- Include Firebase authentication if needed -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script> -->
 
   <!-- The CSS and JS file must be declared after the things above-->
   <link rel="stylesheet" href="index.css"/>
-  <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript" src="index.js" defer></script>
 
   <style>
     /* Add some basic styling for the button */
@@ -30,14 +32,23 @@
       border-radius: 5px;
       cursor: pointer;
     }
- <button id="nextButton">Next</button>
+  </style>
+</head>
+
+<body>
+  <!-- Your existing content goes here -->
+
+  <!-- Add the Next button -->
+  <button id="nextButton">Next</button>
 
   <script>
+    // Your JavaScript code here.
+    // Add any functionality for the Next button here.
+    // For example, you can add an event listener to handle button click.
     document.getElementById("nextButton").addEventListener("click", function() {
-  console.log("Button clicked!");
-  // Add your code here
-});
-
+      // Add the code to handle the "Next" button click event.
+      // You can navigate to the next page or perform any other actions.
+      alert("Next button clicked!");
     });
   </script>
 </body>
