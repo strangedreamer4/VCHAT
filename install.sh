@@ -1,5 +1,5 @@
 #!/bin/bash
- pip3 install  pyrebase4
+
  clear
  
 # Run the Python script
