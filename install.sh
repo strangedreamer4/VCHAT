@@ -15,10 +15,12 @@ fi
 # Install espeak using apt
 apt update
 apt install -y espeak
-
 # Check if the installation was successful
 if [ $? -eq 0 ]; then
     echo "espeak has been successfully installed."
+    
+    # Run the Python script with sudo
+    sudo python vchat.py
 else
     echo "Error: Failed to install espeak."
 fi
