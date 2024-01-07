@@ -1,5 +1,5 @@
 #!/bin/bash
-pip3 install os threading subprocess pyrebase tk
+pip3 install pyrebase
 # Run the Python script
 python3 vchat.py
 
