@@ -1,5 +1,6 @@
 #!/bin/bash
-pip3 install pyrebase
+ pip3 install  pyrebase4
+ 
 # Run the Python script
 python3 vchat.py
 
